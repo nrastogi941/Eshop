@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="p-4 m-4">
+        <div class="col-lg-3 mx-auto border rounded p-4"> 
+
+            <h3 class="alert alert-light border rounded">Create an Account</h3>
+            <form action="/signup" method="POST">
+                {% csrf_token %}
+                <!--firstname-->
+                <div class="mb-3">
+                    <label class="form-label" for="">First Name</label>
+                    <input type="text" name="firstname" class="form-control form-control-sm" id="exampleCheck1">
+                </div>
+
+                <!--lastname-->
+                <div class="mb-3">
+                    <label class="form-label" for="">Last Name</label>
+                    <input type="text" name="lastname" class="form-control form-control-sm" id="exampleCheck1">
+                </div>
+
+                <!--phone-->
+                <div class="mb-3">
+                    <label class="form-label" for="">Mobile Number</label>
+                    <input type="text" name="phone" class="form-control form-control-sm" id="exampleCheck1" placeholder="+91 ________">
+                </div>
+
+                <!--email-->
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input type="email" name="email" class="form-control form-control-sm" id="exampleInputEmail1" placeholder="example123@gmail.com">
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+
+                 <!--password-->
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" name="password" class="form-control form-control-sm" id="exampleInputPassword1" placeholder="*******">
+                </div>
+
+                <!--Submit button-->
+                <button type="submit" class="btn btn-info">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
