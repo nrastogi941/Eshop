@@ -8,28 +8,37 @@
             <h3 class="alert alert-light border rounded">Create an Account</h3>
             <form action="/signup" method="POST">
                 {% csrf_token %}
+
+                <!--error_message-->
+
+                {% if error_message %}
+                <div class="alert alert-danger" role="alert">
+                    {{error_message}}
+                </div>
+                {% endif %}
+
                 <!--firstname-->
                 <div class="mb-3">
                     <label class="form-label" for="">First Name</label>
-                    <input type="text" name="firstname" class="form-control form-control-sm" id="exampleCheck1">
+                    <input type="text" name="firstname" value="{{value.first_name}}" class="form-control form-control-sm" id="exampleCheck1">
                 </div>
 
                 <!--lastname-->
                 <div class="mb-3">
                     <label class="form-label" for="">Last Name</label>
-                    <input type="text" name="lastname" class="form-control form-control-sm" id="exampleCheck1">
+                    <input type="text" name="lastname" value="{{value.last_name}}" class="form-control form-control-sm" id="exampleCheck1">
                 </div>
 
                 <!--phone-->
                 <div class="mb-3">
-                    <label class="form-label" for="">Mobile Number</label>
-                    <input type="text" name="phone" class="form-control form-control-sm" id="exampleCheck1" placeholder="+91 ________">
+                    <label class="form-label" for="">Phone Number</label>
+                    <input type="text" name="phone" value="{{value.phone}}" class="form-control form-control-sm" id="exampleCheck1" placeholder="+91 ________">
                 </div>
 
                 <!--email-->
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <input type="email" name="email" class="form-control form-control-sm" id="exampleInputEmail1" placeholder="example123@gmail.com">
+                    <input type="email" name="email" value="{{value.email}}" class="form-control form-control-sm" id="exampleInputEmail1" placeholder="example123@gmail.com">
                     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                 </div>
 
@@ -40,7 +49,9 @@
                 </div>
 
                 <!--Submit button-->
+                <div class="text-center">
                 <button type="submit" class="btn btn-info">Submit</button>
+                </div>
             </form>
         </div>
     </div>

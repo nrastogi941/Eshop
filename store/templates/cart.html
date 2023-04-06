@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load cart_filter %}
+{% load currency %}
+<div class="container-fluid">
+    <div class="border rounded p-4 m-4">
+        <table class="table">
+            <h1 class="p-2">Your cart :</h1>
+            <hr>
+            <thead>
+              <tr>
+                <th scope="col">S.no</th>
+                <th scope="col">Image</th>
+                <th scope="col">Product</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+             {% for product in products %}
+              <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <th><img style="height:60px" class="rounded-circle" src="{{product.image.url}}" alt=""></th>
+                <td>{{product.name}}</td>
+                <td>{{product.price|currency}}</td>
+                <td>{{product|product_quantity_in_cart:request.session.cart}}</td>
+                <td>{{product|calculate_product_total_price:request.session.cart|currency}}</td>
+              </tr>
+             {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="4"></th>
+                    <th  >Total</th>
+                    <th>{{products|tatal_price_of_item_in_cart:request.session.cart|currency}}</th>
+                </tr>
+            </tfoot>
+          </table>
+          <hr>
+          <div class="m-3 p-3">
+            <a href="#" class="btn btn-outline-info border rounded col-lg-3 float-end"> Check Out</a>
+          </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="p-4 m-4">
+        <div class="col-lg-3 mx-auto border rounded p-4"> 
+
+            <h3 class="alert alert-light border rounded text-center">Eshop Login</h3>
+            <form action="/login" method="POST">
+                {% csrf_token %}
+
+                <!--error_message-->
+
+                {% if error_message %}
+                <div class="alert alert-danger" role="alert">
+                    {{error_message}}
+                </div>
+                {% endif %}
+
+                <!--email-->
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input type="email" name="email" value="{{value.email}}" class="form-control form-control-sm" id="exampleInputEmail1" placeholder="example123@gmail.com">
+                </div>
+
+                 <!--password-->
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" name="password" class="form-control form-control-sm" id="exampleInputPassword1" placeholder="*******">
+                </div>
+
+                <!--Submit button-->
+                <div class="text-center">
+                <button type="submit" class="btn btn-info">Submit</button>
+                </div>
+
+                
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

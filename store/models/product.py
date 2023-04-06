@@ -18,3 +18,7 @@ class Product(models.Model):
             return Product.objects.filter(category=category_id)
         else:
             return Product.get_all_products()
+        
+    @staticmethod
+    def get_all_products_by_listid(list_ids):
+        return Product.objects.filter(id__in=list_ids)
