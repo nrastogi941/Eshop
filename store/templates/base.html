@@ -26,10 +26,12 @@
           <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link active position-relative" aria-current="page" href="cart">Cart
+                {% if request.session.cart.keys|length != 0 %}
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                   {{request.session.cart.keys|length}}
                   <span class="visually-hidden">unread messages</span>
                 </span>
+                {% endif %}
               </a>
               
             </li>

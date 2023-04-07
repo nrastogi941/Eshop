@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.views import View
 from store.models import Orders
-from django.utils.decorators import method_decorator
 
 class Order(View):
 

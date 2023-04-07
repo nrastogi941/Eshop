@@ -3,6 +3,21 @@
 {% block content %}
 {% load cart_filter %}
 {% load currency %}
+
+
+{% if error_message %}
+
+<div class="container-fluid">
+  <div class="border rounded p-4 m-4 text-center border-success">
+    {% if customer_name %}
+    <h3>Hi! {{customer_name}}, {{error_message}}</h3>
+    {% else %}
+    <h3>Hi!{{error_message}}</h3>
+    {% endif %}
+  </div>
+</div>
+
+{% else %}
 <div class="container-fluid">
     <div class="border rounded p-4 m-4">
         <table class="table">
@@ -73,4 +88,5 @@
       </div>
     </div>
 </div>
+{% endif %}
 {% endblock content %}

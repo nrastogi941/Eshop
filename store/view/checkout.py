@@ -1,5 +1,6 @@
-from django.shortcuts import render,HttpResponse,redirect
+from django.shortcuts import redirect
 from django.views import View
+from django.contrib import messages
 from store.models import Product,Orders,Customer
 
 
@@ -14,10 +15,13 @@ class CheckOut(View):
         
         print(address,phone,customer_id,cart,products)
 
-        for product in products:
-            order=Orders(Customer=Customer(id=customer_id), product=product,price=product.price,quantity=cart.get(str(product.id)),address=address,phone=phone)
-            order.PlaceOrder()
-        
-        request.session['cart']={}
+        if customer_id != None:
+            for product in products:
+                order=Orders(Customer=Customer(id=customer_id), product=product,price=product.price,quantity=cart.get(str(product.id)),address=address,phone=phone)
+                order.save()
+            request.session['cart']={}
+        else:
+            messages.warning(request, 'Please login !!')
+            return redirect('login')
 
         return redirect('cart')
